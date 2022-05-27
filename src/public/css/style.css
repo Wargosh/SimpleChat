@@ -1,0 +1,12 @@
+/* p, small{
+    font-weight: 300;
+} */
+
+.btn-icon {
+  cursor: pointer;
+  color: rgba(107, 114, 128, 1);
+}
+
+.btn-icon:hover {
+  color: rgba(17, 24, 39, 1);
+}
