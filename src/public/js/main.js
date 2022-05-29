@@ -1,4 +1,4 @@
-import { loadChats, loadUsers, loadRooms, changeRoom } from "./socket.js";
+import { loadChats, loadUsers, loadRooms } from "./socket.js";
 import {
   onHandleSubmit,
   renderMessages,
@@ -13,7 +13,3 @@ msgForm.addEventListener("submit", onHandleSubmit);
 loadChats(renderMessages);
 loadUsers(renderUsers);
 loadRooms(renderRooms);
-
-// const roomsUI = document.getElementsByName("room")
-// console.log("rooms UI:", roomsUI);
-

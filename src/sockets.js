@@ -75,7 +75,6 @@ export default (io) => {
       joinToRoom();
       emitChats();
       updateTotalUsersInTheRoom();
-      console.log(rooms);
     });
 
     socket.on("chat:globalmessage", async (msg) => {

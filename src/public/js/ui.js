@@ -41,6 +41,8 @@ export const renderMessages = (msgs) => {
       AddMessageUI(m);
     }
   });
+
+  serverMessagePresentation();
 };
 
 export const renderUsers = (usrs) => {
@@ -60,16 +62,17 @@ export const renderRooms = (rooms) => {
   });
 
   rooms.forEach((r) => {
-    console.log(document.getElementById(r.name))
-    document.getElementById(r.name).addEventListener("click", appendEmote, false)
-  })
+    console.log(document.getElementById(r.name));
+    document
+      .getElementById(r.name)
+      .addEventListener("click", onclickHandler_ChangeRoom, false);
+  });
 };
 
-function appendEmote (zEvent) {
-  //-- this and the parameter are special in event handlers.  see the linked doc.
-  var emoteUsage  = this.getAttribute ("data-room");
-  console.log("handler called to:", emoteUsage);
-  changeRoom(emoteUsage);
+function onclickHandler_ChangeRoom(zEvent) {
+  var idRoom = this.getAttribute("data-room");
+  msg.room = idRoom;
+  changeRoom(idRoom);
 }
 
 // Agregar mensajes
@@ -147,10 +150,6 @@ export const AddMsgServerUI = (data) => {
   messagesUI.innerHTML += html;
   updateScroll();
 };
-AddMsgServerUI({
-  status: "",
-  message: "Por tu seguridad no compartas información privada o financiera.",
-});
 
 export const updateUsername = (data) => {
   myUsername.innerHTML = msg.username = data;
@@ -158,9 +157,20 @@ export const updateUsername = (data) => {
 
 export const updateRoomname = (data) => {
   roomName.innerHTML = "Sala: " + data;
-}
+};
 updateRoomname(msg.room);
 
 function updateUsersCount(data) {
   titleUsers.innerHTML = "Usuarios (" + data + "):";
+}
+
+function serverMessagePresentation() {
+  AddMsgServerUI({
+    status: "",
+    message: `Bienvenid@ <b>${msg.username}</b> a la sala <b>"${msg.room}"</b>`,
+  });
+  AddMsgServerUI({
+    status: "",
+    message: "<b>Por tu seguridad no compartas información privada o financiera.</b>",
+  });
 }
